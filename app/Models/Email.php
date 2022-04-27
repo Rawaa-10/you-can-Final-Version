@@ -5,6 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class Email
+ * @package App\Models
+ */
 class Email extends Model
 {
     use HasFactory;
@@ -12,7 +16,11 @@ class Email extends Model
     protected $fillable=[
         'email'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function company(){
-        return $this->belongsTo('App\Models\Company' , 'comp-id');
+        return $this->belongsTo(Company::class , 'comp-id');
     }
 }

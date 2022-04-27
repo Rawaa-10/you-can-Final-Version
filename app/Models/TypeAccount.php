@@ -16,4 +16,7 @@ class TypeAccount extends Model
     public  function role(){
         return $this->belongsTo('App\Models\Role' ,'role-id' );
     }
+    public function user (){
+        return $this->hasMany(User::class);
+    }
 }

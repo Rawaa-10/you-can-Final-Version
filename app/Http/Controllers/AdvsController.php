@@ -1,10 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
 use App\Models\Advs;
 use Illuminate\Http\Request;
 
+
+/**
+ * Class AdvsController
+ * @package App\Http\Controllers
+ */
 class AdvsController extends Controller
 {
     /**
@@ -14,7 +20,8 @@ class AdvsController extends Controller
      */
     public function index()
     {
-        //
+        //to get all post
+        return  Advs::all();
     }
 
     /**
@@ -35,7 +42,9 @@ class AdvsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       // $request->validate([]);
+        //create an adv
+        return  Advs::create($request->all());
     }
 
     /**
@@ -46,7 +55,7 @@ class AdvsController extends Controller
      */
     public function show(Advs $advs)
     {
-        //
+        return  Advs::find($advs->getKey());
     }
 
     /**
@@ -69,7 +78,8 @@ class AdvsController extends Controller
      */
     public function update(Request $request, Advs $advs)
     {
-        //
+         return Advs::find($advs->getKey() )->update($request->all());
+
     }
 
     /**
@@ -80,6 +90,6 @@ class AdvsController extends Controller
      */
     public function destroy(Advs $advs)
     {
-        //
+        return Advs::destroy($advs);
     }
 }

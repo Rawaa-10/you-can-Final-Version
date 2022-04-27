@@ -14,10 +14,11 @@ class CreateAdvservicesTable extends Migration
     public function up()
     {
         Schema::create('advservices', function (Blueprint $table) {
+            $table->id('service_id');
             $table->string('service');
 
-           $table->bigInteger('adv_id')->references('adv_id')
-               ->on('advs')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
+          // $table->bigInteger('adv_id')->references('adv_id')
+             //  ->on('advs')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->timestamps();
         });
     }

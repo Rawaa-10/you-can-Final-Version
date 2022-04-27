@@ -23,9 +23,8 @@ class Role extends Model
             , 'role-id' , 'permit-id');
     }
 
-    public function user(){
-        return $this->belongsToMany('App\Models\User' , 'role_user'
-            , 'role-id' , 'user-id')
-            ->withPivot( 'grant-date', 'grantor')->withTimestamps();
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
     }
 }

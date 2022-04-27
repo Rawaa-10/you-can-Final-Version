@@ -13,4 +13,8 @@ class Type extends Model
     protected $fillable=[
         'type'
     ];
+
+    public function company (){
+        return $this->hasMany(Company::class);
+    }
 }

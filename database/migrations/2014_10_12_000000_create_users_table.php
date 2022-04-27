@@ -6,6 +6,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+/**
+ * Class CreateUsersTable
+ */
 class CreateUsersTable extends Migration
 {
     /**
@@ -20,16 +23,13 @@ class CreateUsersTable extends Migration
             $table->string('f-name');
             $table->string('l-name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('picture')->nullable();
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->text('education')->nullable();
-            $table->boolean('account-stat');
-            $table->date('birth-date');
-            $table->text('address');
-            $table->integer('serial-number' )->unique();
-            $table->boolean('email-val');
+            $table->date('birth-date')->nullable();
+            $table->text('address')->nullable();
+            $table->dateTime('email_verified_at')->nullable();
 
 
             $table->bigInteger('comp_id')->nullable()->references('comp_id')
