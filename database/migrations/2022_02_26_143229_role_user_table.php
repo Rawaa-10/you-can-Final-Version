@@ -14,12 +14,10 @@ class RoleUserTable extends Migration
     public function up()
     {
         Schema::create('role_user', function (Blueprint $table) {
-            $table->bigInteger('user_id')->references('user_id')
+            $table->bigInteger('user_id')->references('id')
                 ->on('users')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
-
-            $table->bigInteger('role_id')->references('role_id')
+            $table->bigInteger('role_id')->references('id')
                 ->on('roles')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
-
             $table->dateTime('grant-date');
             $table->string('grantor');
             $table->timestamps();

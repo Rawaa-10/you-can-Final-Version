@@ -18,13 +18,11 @@ class CreateCompaniesTable extends Migration
     public function up()
     {
         Schema::create('companies', function (Blueprint $table) {
-            $table->id('comp-id');
+            $table->id();
             $table->string('name');
             $table->text('location');
             $table->string('picture');
-
-
-            $table->bigInteger('type_id')->references('type_id')
+            $table->bigInteger('type_id')->references('id')
                 ->on('types')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->timestamps();
         });

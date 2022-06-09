@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Contracts\Auth\CanResetPassword ;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class User
@@ -18,6 +19,7 @@ use Illuminate\Contracts\Auth\CanResetPassword ;
 class User extends Authenticatable  implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +27,6 @@ class User extends Authenticatable  implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $table='users';
-    protected $primaryKey='user-id';
     protected $fillable = [
         'f-name','l-name',
         'email',
@@ -43,6 +44,11 @@ class User extends Authenticatable  implements MustVerifyEmail
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verified_at',
+		'companie_id',
+		'type-account_id',
+		'created_at',
+		'updated_at'
     ];
 
     /**
@@ -64,17 +70,10 @@ class User extends Authenticatable  implements MustVerifyEmail
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-   // public function  typeaccount(){
-     //  return $this->belongsTo(TypeAccount::class);
-    //}
 
         public function advs (){
             return $this->hasMany(Advs::class);
         }
-      //  public function role (){
-        //    return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
-       // }
-
  /**
      * Send the password reset notification.
      *

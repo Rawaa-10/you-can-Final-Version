@@ -1,10 +1,15 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
 use App\Models\Advservice;
 use Illuminate\Http\Request;
 
+/**
+ * Class AdvserviceController
+ * @package App\Http\Controllers
+ */
 class AdvserviceController extends Controller
 {
     /**
@@ -14,7 +19,7 @@ class AdvserviceController extends Controller
      */
     public function index()
     {
-        //
+        return Advservice::all();
     }
 
     /**
@@ -35,18 +40,23 @@ class AdvserviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'service' => 'required|string'
+        ] , [
+            'service.required' => 'you have to enter service’s name to add!!!!'
+        ]);
+        return  Advservice::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Advservice  $advservice
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Advservice $advservice)
+    public function show($id)
     {
-        //
+        return  Advservice::find($id);
     }
 
     /**
@@ -64,22 +74,29 @@ class AdvserviceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Advservice  $advservice
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Advservice $advservice)
+    public function update(Request $request,int $id)
     {
-        //
+        //dd($request->input('service'));
+        $ser = Advservice::where('id' , $id)->first();
+        $ser->update($request->all());
+            return response()->json([ 'status ' => 'true' , 'message' => ' service updated !!!!'
+                , 'data' =>$ser]);
+
+
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Advservice  $advservice
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Advservice $advservice)
+    public function destroy(int $id)
     {
-        //
+        $adv = Advservice::destroy($id);
+        return response()->json([ 'status ' => 'true' , 'message' => ' service deleted !!!!']);
     }
 }

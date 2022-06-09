@@ -13,7 +13,6 @@ class Company extends Model
 {
     use HasFactory;
     protected $table='companies';
-    protected $primaryKey='comp_id';
     protected $fillable=[
         'location' , 'name', 'picture'
     ];

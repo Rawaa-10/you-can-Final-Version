@@ -9,7 +9,6 @@ class Type extends Model
 {
     use HasFactory;
     protected $table='types';
-    protected $primaryKey='type_id';
     protected $fillable=[
         'type'
     ];

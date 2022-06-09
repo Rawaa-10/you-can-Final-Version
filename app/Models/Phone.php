@@ -16,7 +16,11 @@ class Phone extends Model
     protected $fillable=[
         'phone'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function company(){
-        return $this->belongsTo(Company::class , 'comp-id');
+        return $this->belongsTo(Company::class );
     }
 }

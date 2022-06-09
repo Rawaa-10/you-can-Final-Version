@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id('user-id');
+            $table->id();
             $table->string('f-name');
             $table->string('l-name');
             $table->string('email')->unique();
@@ -29,14 +29,15 @@ class CreateUsersTable extends Migration
             $table->text('education')->nullable();
             $table->date('birth-date')->nullable();
             $table->text('address')->nullable();
-            $table->dateTime('email_verified_at')->nullable();
+            $table->dateTime('email_verified_at');
 
 
-            $table->bigInteger('comp_id')->nullable()->references('comp_id')
+            $table->bigInteger('companie_id')->nullable()->references('id')
                 ->on('companies')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
-            $table->bigInteger('act_id')->nullable()->references('act_id')
+            $table->bigInteger('type-account_id')->nullable()->references('id')
                 ->on('type-accounts')->onDelete('cascade')->onUpdate('cascade')
                 ->index()->unsigned();
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

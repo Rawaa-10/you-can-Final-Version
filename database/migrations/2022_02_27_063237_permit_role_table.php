@@ -15,10 +15,10 @@ class PermitRoleTable extends Migration
     {
         Schema::create('permit_role', function (Blueprint $table) {
 
-            $table->bigInteger('permit_id')->references('permit_id')
+            $table->bigInteger('permit_id')->references('id')
                 ->on('permits')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
 
-            $table->bigInteger('role_id')->references('role_id')
+            $table->bigInteger('role_id')->references('id')
                 ->on('roles')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->timestamps();
         });
