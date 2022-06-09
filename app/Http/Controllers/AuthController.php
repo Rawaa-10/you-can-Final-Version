@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,7 +26,13 @@ class AuthController extends Controller
                 'f-name' => 'required|string',
                 'l-name' => 'required|string',
                 'email' => 'required|email|unique:Users,email',
-                'password'=> 'required|min:8'
+                'password'=> 'required|min:8' ,
+                'confirm_password' => 'required|same:password'
+            ] , [
+                'f-name.required' => 'THE FIRST NAME IS REQUIRED ',
+                'l-name.required' => 'THE LAST NAME IS REQUIRED' ,
+                'email.required' =>'THE EMAIL IS REQUIRED' ,
+                'password.required' =>'THE PASSWORD IS REQUIRED' ,
             ]);
 
             $users = User::create([
@@ -50,7 +57,7 @@ class AuthController extends Controller
      * @return string[]
      */
     public function logout (Request $request){
-        $request->user()->tokens->delete();
+        auth()->user()->Tokens()->delete();
         return [
             'message' => 'logged out'
         ];
@@ -63,9 +70,11 @@ class AuthController extends Controller
      */
     public function login (Request $request){
         $request->validate([
-            //'f-name' => 'required|string',
-            'email' => 'required|email|unique:Users,email',
-            'password'=> 'required|max:8'
+            'email' => 'required|email',
+            'password'=> 'required|min:8'
+        ] , [
+            'email.required' =>'THE EMAIL IS REQUIRED' ,
+            'password.required' =>'THE PASSWORD IS REQUIRED' ,
         ]);
         //check email
         $users = User::where('email' , $request['email'])->first();

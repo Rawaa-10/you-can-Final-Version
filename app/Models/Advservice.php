@@ -17,11 +17,19 @@ class Advservice extends Model
     protected $fillable=[
         'service'
     ];
+    protected $hidden = ['created_at','updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function adv(){
-        return $this->belongsTo(Advs::class,'adv_id');
+        return $this->hasMany(Advs::class );
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function category(){
+        return $this->belongsToMany(Category::class);
     }
 }

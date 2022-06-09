@@ -9,20 +9,22 @@ class Role extends Model
 {
     use HasFactory;
     protected $table='roles';
-    protected $primaryKey='role_id';
     protected $fillable=[
         'role-name'
     ];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function typeaccount()
     {
         return $this->hasOne('App\Models\TypeAccount');
     }
 
-    public function permit(){
-        return $this->belongsToMany('App\Models\Permit' , 'permit_role'
-            , 'role-id' , 'permit-id');
-    }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function users()
     {
         return $this->belongsToMany(User::class);
