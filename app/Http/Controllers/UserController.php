@@ -36,6 +36,17 @@ class UserController extends Controller
      * @param Request $request
      */
     public function updateprofile (Request $request){
+        $request->validate([
+            'f-name' => 'required|string' ,
+            'l-name' => 'required|string' ,
+            'phone' => 'nullable|string|min:9' ,
+            'education' => 'nullable|string' ,
+            'address' => 'nullable|string' ,
+            'birth-date' => 'nullable|date'
+        ],[
+            'f-name.required' => 'you have to enter the first name for your profile ' ,
+            'l-name.required' => 'you have to enter the last name for your profile '
+        ]);
          $user_id = Auth::user()->id;
          $user = User::find($user_id);
          $user['f-name'] = $request->input('f-name');

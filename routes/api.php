@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth:sanctum']] , function () {
 //////////////////login and register ///////////////////////////////////
     Route::get('/register' ,[AuthController::class , 'register'])->name('register2');
     Route::post('/register' ,[AuthController::class , 'register']);
-    Route::post('/login' ,[AuthController::class , 'login'])->middleware('EnsureTokenIsValid');
+    Route::post('/login' ,[AuthController::class , 'login']);
     //Route::post('/logout' ,[AuthController::class , 'logout'])->middleware(['auth:sanctum']);
 
 //////////////////////check user ///////////////////////////////////////

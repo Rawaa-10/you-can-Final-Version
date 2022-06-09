@@ -57,7 +57,7 @@ class AdvsController extends Controller
             'advservice_id' => 'required|integer'
         ], [
             //messages
-            'category_id.required' => 'the category is required',
+            'category_id.required' => 'you have to add category to this advertisements',
             'advservice_id.required' => 'what the service name of this advertisements ??? "its required"'
         ]);
 

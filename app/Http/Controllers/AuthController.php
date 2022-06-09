@@ -23,9 +23,9 @@ class AuthController extends Controller
      */
      public function register(Request $request){
             $request->validate([
-                'f-name' => 'required|string',
-                'l-name' => 'required|string',
-                'email' => 'required|email|unique:Users,email',
+                'f-name' => 'required|string|max:12|min:3',
+                'l-name' => 'required|string|max:12|min:3',
+                'email' => 'required|email|unique:Users,email|max:255|min:5',
                 'password'=> 'required|min:8' ,
                 'confirm_password' => 'required|same:password'
             ] , [
@@ -70,7 +70,7 @@ class AuthController extends Controller
      */
     public function login (Request $request){
         $request->validate([
-            'email' => 'required|email',
+            'email' => 'required|email|max:255|min:5',
             'password'=> 'required|min:8'
         ] , [
             'email.required' =>'THE EMAIL IS REQUIRED' ,
