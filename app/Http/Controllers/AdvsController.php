@@ -128,7 +128,8 @@ class AdvsController extends Controller
      */
     public function destroy( $id)
     {
-        return Advs::destroy($id);
+        $adv =  Advs::destroy($id);
+        return response()->json([ 'status ' => 'true' , 'message' => ' advertisements deleted !!']);
     }
 
     /**

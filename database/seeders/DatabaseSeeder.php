@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         ///here i put all seeder i create it
         $this->call(UserSeeder::class);
+        $this->call(AdvsSeeder::class);
     }
 }

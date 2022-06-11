@@ -9,4 +9,5 @@ class AdvserviceCategory extends Model
 {
     use HasFactory;
     protected $fillable = ['advservice_id' , 'category_id'];
+    protected $table = 'advservice_category' ;
 }

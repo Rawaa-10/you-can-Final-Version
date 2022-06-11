@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 use App\Http\Controllers\AdvsController;
+use App\Http\Controllers\AdvserviceCategoryController;
 use App\Http\Controllers\AdvserviceController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['auth:sanctum' , 'verified']] , function () {
     Route::get('/search_for_adv/{id}' , [AdvsController::class , 'search']);
     Route::resource( '/company' , CompanyController::class);
     Route::get('/get_company_by_type' ,[RelationController::class , 'get_company_by_type']);
+    Route::resource('/add-service-category' , AdvserviceCategoryController::class);
 });
 
 //////////////////login and register ///////////////////////////////////
