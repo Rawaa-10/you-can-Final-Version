@@ -17,11 +17,5 @@ class EnsureTokenIsValid
      */
     public function handle(Request $request, Closure $next)
     {
-        Auth::id();
-        if ($request['email_verified_at'] == false)
-        {
-            return 'you have to verify your email first !!!!';
-        }
-        return $next($request);
     }
 }

@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('f-name');
             $table->string('l-name');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('password');
             $table->string('picture')->nullable();
             $table->string('phone')->unique()->nullable();
@@ -30,13 +30,15 @@ class CreateUsersTable extends Migration
             $table->date('birth-date')->nullable();
             $table->text('address')->nullable();
             $table->dateTime('email_verified_at');
-
+            $table->enum('account_type' , ['admin' , 'normal'])->default('normal');
 
             $table->bigInteger('companie_id')->nullable()->references('id')
                 ->on('companies')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
-            $table->bigInteger('type-account_id')->nullable()->references('id')
-                ->on('type-accounts')->onDelete('cascade')->onUpdate('cascade')
-                ->index()->unsigned();
+            //$table->bigInteger('type-account_id')->nullable()->references('id')
+              //  ->on('type-accounts')->onDelete('cascade')->onUpdate('cascade')
+                //->index()->unsigned();
+            $table->bigInteger('role_id')->nullable()->references('id')
+                ->on('roles')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

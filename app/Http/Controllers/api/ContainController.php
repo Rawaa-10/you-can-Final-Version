@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\Permit;
+use App\Models\Contain;
 use Illuminate\Http\Request;
 
-class PermitController extends Controller
+class ContainController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PermitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Contain  $contain
      * @return \Illuminate\Http\Response
      */
-    public function show(Permit $permit)
+    public function show(Contain $contain)
     {
         //
     }
@@ -52,10 +52,10 @@ class PermitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Contain  $contain
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permit $permit)
+    public function edit(Contain $contain)
     {
         //
     }
@@ -64,10 +64,10 @@ class PermitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Contain  $contain
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permit $permit)
+    public function update(Request $request, Contain $contain)
     {
         //
     }
@@ -75,10 +75,10 @@ class PermitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Contain  $contain
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permit $permit)
+    public function destroy(Contain $contain)
     {
         //
     }

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,11 +23,12 @@ class NewPasswordController extends Controller
      * @throws ValidationException
      */
     public function sendResetLinkResponse (Request $request){
-
+        //you forgot your password and want to change it
         $request->validate([
             'email' => 'required|email'
         ]);
-        $status = Password::sendResetLink($request->only('email'));
+        $status = Password::sendResetLink
+                    ($request->only('email'));
         if ($status == Password::RESET_LINK_SENT){
             return [
                 'status' => __($status)
@@ -46,24 +47,25 @@ class NewPasswordController extends Controller
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function sendResetResponse (Request $request){
-//مسؤولا عن التحقق من صحة الطلب الوارد وتحديث كلمة مرور المستخدم في قاعدة البيانات:
         $request->validate([
-            'token' => 'required' ,
-            'email' => 'required|email' ,
-            'password' => ['required' , \Illuminate\Validation\Rules\Password::default()]
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password'
         ]);
+
         $status = Password::reset(
-            $request->only('email' , 'password' , 'password-confirmation' , 'token'),
-            function ($user) use ($request){
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
                 $user->forceFill([
-                    'password' => Hash::make($request->password) ,
-                    'remember_token' => Str::random(60)
-                ])->save();
-                $user()->tokens->delete();
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
                 event(new PasswordReset($user));
             }
         );
-
         if ($status == Password::PASSWORD_RESET){
 
             return response([

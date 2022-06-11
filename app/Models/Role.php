@@ -21,12 +21,20 @@ class Role extends Model
         return $this->hasOne('App\Models\TypeAccount');
     }
 
-
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+    public function permissions()
+    {
+        return $this->belongsToMany(Permit::class,"permit_role"  , "role_id","permit_id");
+    }
+
+    public function rolePermissions()
+    {
+        return $this->hasMany(PermitRole::class , "role_id");
     }
 }

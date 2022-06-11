@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -32,6 +32,7 @@ class EmailVerificationController extends Controller
 
 
     public function verify(EmailVerificationRequest $request){
+        ///EmailVerificationRequest this will take care of validating the request's id and hash parameters.
         if ($request->user()->hasverifiedemail())
         {
             return[
@@ -41,9 +42,10 @@ class EmailVerificationController extends Controller
         if($request->user()->markEmailAsVerified())
         {
             event(new Verified($request->user()));
+            /////this will add date to email verified at in user table
         }
         return [
-            'message' => 'Email has been verified'
+            'message' => 'Your Email is verified'
         ];
     }
 }

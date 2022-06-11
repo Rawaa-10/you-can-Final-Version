@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
-use App\Models\TypeAccount;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-class TypeAccountController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TypeAccountController extends Controller
      */
     public function index()
     {
-        //
+        return Category::all();
     }
 
     /**
@@ -35,27 +35,32 @@ class TypeAccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+        'category' => 'required|string'
+        ] , [
+        'category.required' => 'you have to enter category’s name to add!!!!'
+         ]);
+        return Category::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TypeAccount  $typeAccount
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(TypeAccount $typeAccount)
+    public function show(int $id)
     {
-        //
+        return Category::find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\TypeAccount  $typeAccount
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(TypeAccount $typeAccount)
+    public function edit(Category $category)
     {
         //
     }
@@ -64,22 +69,27 @@ class TypeAccountController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\TypeAccount  $typeAccount
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TypeAccount $typeAccount)
+    public function update(Request $request, int $id)
     {
-        //
+        //dd($request->all());
+        $cate = Category::where( 'id' , $id)->first();
+        $cate->update($request->all());
+        return response()->json([ 'status ' => 'true' , 'message' => 'category updated !!!!'
+            , 'data' =>$cate]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\TypeAccount  $typeAccount
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TypeAccount $typeAccount)
+    public function destroy(int $id)
     {
-        //
+        $cat =  Category::destroy($id);
+        return response()->json([ 'status ' => 'true' , 'message' => ' category deleted !!!!']);
     }
 }

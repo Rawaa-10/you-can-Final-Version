@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('location');
-            $table->string('picture');
+            $table->string('picture')->nullable();
             $table->bigInteger('type_id')->references('id')
                 ->on('types')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
             $table->timestamps();

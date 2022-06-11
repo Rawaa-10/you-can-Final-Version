@@ -26,10 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-
+        ///create the email that will be send to the user
         VerifyEmail::toMailUsing(function ($notifiable , $url){
             $spaurl = "http://spa.test?email_verify_url=" . $url;
-
+            ////this url to go next after verify
             return (new MailMessage())
                 ->subject('verify email address')
                 ->line('click the button below to verify your email')

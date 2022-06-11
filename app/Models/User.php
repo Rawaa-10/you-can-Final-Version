@@ -32,7 +32,7 @@ class User extends Authenticatable  implements MustVerifyEmail
         'email',
         'password'
         ,'picture' , 'phone' , 'education', 'birth-date'
-        ,'address'
+        ,'address' , 'account_type'
 
     ];
 
@@ -42,13 +42,7 @@ class User extends Authenticatable  implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
-        'email_verified_at',
-		'companie_id',
-		'type-account_id',
-		'created_at',
-		'updated_at'
+        'remember_token'
     ];
 
     /**
@@ -85,7 +79,18 @@ class User extends Authenticatable  implements MustVerifyEmail
         $url = 'https://spa.test/reset-password?token=' . $token;
         $this->notify(new ResetPassNotification($url));
     }
+    protected function role()
+    {
+        return $this->belongsTo(Role::class, "role_id");
+    }
 
+    public  function hasPermission($permission)
+    {
+        if($this->role==null) {
+            return false;
+        }
+        return $this->role->permission()->where("permit", $permission)->count()>0;
+    }
 
 
 }

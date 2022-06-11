@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Models\Advservice;
 use Illuminate\Http\Request;
@@ -43,7 +43,7 @@ class AdvserviceController extends Controller
         $request->validate([
             'service' => 'required|string'
         ] , [
-            'service.required' => 'you have to enter service’s name to add!!!!'
+            'service.required' => 'PLEASE ADD NAME FOR SERVICE TO ADD !!!!'
         ]);
         return  Advservice::create($request->all());
     }
@@ -82,7 +82,7 @@ class AdvserviceController extends Controller
         //dd($request->input('service'));
         $ser = Advservice::where('id' , $id)->first();
         $ser->update($request->all());
-            return response()->json([ 'status ' => 'true' , 'message' => ' service updated !!!!'
+            return response()->json([ 'status ' => 'true' , 'message' => 'SERVICE UPDATED !!!!'
                 , 'data' =>$ser]);
 
 
@@ -97,6 +97,6 @@ class AdvserviceController extends Controller
     public function destroy(int $id)
     {
         $adv = Advservice::destroy($id);
-        return response()->json([ 'status ' => 'true' , 'message' => ' service deleted !!!!']);
+        return response()->json([ 'status ' => 'true' , 'message' => 'SERVICE DELETED !!!!']);
     }
 }

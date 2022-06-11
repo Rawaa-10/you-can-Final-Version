@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\api;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -20,7 +20,7 @@ class ChangePasswordController extends Controller
             'confirm_password' => 'required|same:new-password'
         ] , [
             'password.required' =>'YOU HAVE TO ENTER YOUR OLD PASSWORD TO CHANGE IT ' ,
-            'new-password.required' =>'YOU HAVE TO ENTER NEW PASSWORD TO CHANGE THE OLD ONE  '
+            'new-password.required' =>'YOU HAVE TO ENTER THE NEW PASSWORD TO CHANGE THE OLD ONE  '
         ]);
         ///get user old password
         $user = Auth::user();
@@ -30,11 +30,10 @@ class ChangePasswordController extends Controller
            $user->fill([
                'password' => Hash::make($request['new-password'])
            ])->save();
-           //Auth::logout();
-            return response()->json(['message' => 'YOUR PASSWORD SUCCESSFULLY UPDATED
-            YOU HAVE TO LOGOUT !!! '] , 200);
+            auth()->user()->Tokens()->delete();
+            return response()->json(['message' => 'YOUR PASSWORD SUCCESSFULLY UPDATED !!! '] , 200);
         }else{
-            return response()->json(['message' => ' old password is incorrect !!! '] , 200);
+            return response()->json(['message' => 'YOUR OLD PASSWORD IS INCORRECT !!! '] , 200);
         }
 
     }

@@ -14,7 +14,7 @@ class Company extends Model
     use HasFactory;
     protected $table='companies';
     protected $fillable=[
-        'location' , 'name', 'picture'
+        'location' , 'name', 'picture' , 'type_id'
     ];
 
     /**

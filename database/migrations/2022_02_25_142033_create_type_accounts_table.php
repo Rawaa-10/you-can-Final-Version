@@ -19,11 +19,8 @@ class CreateTypeAccountsTable extends Migration
     {
         Schema::create('type_accounts', function (Blueprint $table) {
             $table->id();
-            $table->enum('type-act' , ['admin' , 'user'])->default('user');
-            $table->string('role');
-            $table->bigInteger('role_id')->references('id')
-                ->on('roles')->onDelete('cascade')->onUpdate('cascade')->index()->unsigned();
-            $table->timestamps();
+            $table->string('type-act')->default('normal');
+
         });
     }
 
