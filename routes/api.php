@@ -30,6 +30,7 @@ Route::group(['middleware' => ['auth:sanctum' , 'verified']] , function () {
     Route::resource('/category' , CategoryController::class);
     Route::get('/get-profile' , [UserController::class , 'getprofile']);
     Route::post('/update-profile' , [UserController::class , 'updateprofile']);
+    Route::get('/delete-user/{id}' , [UserController::class , 'delete']);
     Route::post('/change-password' , [ChangePasswordController::class , 'changepassword']);
     Route::get('/get_advs_for_service/{id}' , [RelationController::class , 'get_advs_for_service']);
     Route::get('/get_advs_for_category/{id}' , [RelationController::class , 'get_advs_for_category']);
@@ -40,7 +41,7 @@ Route::group(['middleware' => ['auth:sanctum' , 'verified']] , function () {
 });
 
 //////////////////login and register ///////////////////////////////////
-    Route::get('/register' ,[AuthController::class , 'register'])->name('register2');///->middleware('verified');
+    Route::get('/register' ,[AuthController::class , 'register']);///->middleware('verified');
     Route::post('/register' ,[AuthController::class , 'register']);//->middleware('verified');
     Route::post('/login' ,[AuthController::class , 'login']);
     //Route::post('/logout' ,[AuthController::class , 'logout'])->middleware(['auth:sanctum']);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -67,5 +68,14 @@ class UserController extends Controller
          return response()->json([ 'status ' => 'true' , 'message' => 'profile updated !!!!'
              , 'data' =>$user]);
     }
+    /**
+     * @param int $id
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
 
+    public function delete(int $id){
+        $user = User::query()->findOrFail($id);
+        $user->delete();
+        return  response()->json(['message' => 'THE USER IS DELETED SUCCESSFULLY !!! '] , 200);
+    }
 }

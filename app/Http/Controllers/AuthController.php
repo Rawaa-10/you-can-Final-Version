@@ -54,7 +54,9 @@ class AuthController extends Controller
              ];
 
              return response($respone, 201);
-             }
+             }else{
+                    return 'THIS EMAIL IS ALREADY IN USE !!!';
+                }
     }
 
     /**
@@ -100,5 +102,7 @@ class AuthController extends Controller
             ];
             return response($respone, 201);
         }
+
     }
+
 }
