@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->text('education')->nullable();
             $table->date('birth-date')->nullable();
             $table->text('address')->nullable();
-            $table->dateTime('email_verified_at');
+            $table->dateTime('email_verified_at')->nullable();
             $table->enum('account_type' , ['admin' , 'normal'])->default('normal');
 
             $table->bigInteger('companie_id')->nullable()->references('id')

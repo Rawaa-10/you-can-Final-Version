@@ -19,6 +19,7 @@ class EmailVerificationController extends Controller
      * @return string[]
      */
     public function sendverificationemail (Request $request){
+        //dd($request->all());
         if ($request->user()->hasverifiedemail())
         {
             return[
