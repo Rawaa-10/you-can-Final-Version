@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
-use App\Models\Permit;
+use App\Models\Phone;
 use Illuminate\Http\Request;
 
-class PermitController extends Controller
+class PhoneController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PermitController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function show(Permit $permit)
+    public function show(Phone $phone)
     {
         //
     }
@@ -52,10 +52,10 @@ class PermitController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function edit(Permit $permit)
+    public function edit(Phone $phone)
     {
         //
     }
@@ -64,10 +64,10 @@ class PermitController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Permit $permit)
+    public function update(Request $request, Phone $phone)
     {
         //
     }
@@ -75,10 +75,10 @@ class PermitController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Permit  $permit
+     * @param  \App\Models\Phone  $phone
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Permit $permit)
+    public function destroy(Phone $phone)
     {
         //
     }

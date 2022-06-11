@@ -1,15 +1,15 @@
 <?php
 declare(strict_types=1);
-use App\Http\Controllers\api\AdvsController;
-use App\Http\Controllers\api\AdvserviceController;
-use App\Http\Controllers\api\AuthController;
-use App\Http\Controllers\api\CategoryController;
-use App\Http\Controllers\api\ChangePasswordController;
-use App\Http\Controllers\api\CompanyController;
-use App\Http\Controllers\api\EmailVerificationController;
-use App\Http\Controllers\api\NewPasswordController;
-use App\Http\Controllers\api\RelationController;
-use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\AdvsController;
+use App\Http\Controllers\AdvserviceController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\NewPasswordController;
+use App\Http\Controllers\RelationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

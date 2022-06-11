@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
 use App\Models\Advs;
 use App\Models\Advservice;

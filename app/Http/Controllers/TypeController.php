@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
-use App\Models\Contain;
+use App\Models\Type;
 use Illuminate\Http\Request;
 
-class ContainController extends Controller
+class TypeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ContainController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contain  $contain
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function show(Contain $contain)
+    public function show(Type $type)
     {
         //
     }
@@ -52,10 +52,10 @@ class ContainController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contain  $contain
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contain $contain)
+    public function edit(Type $type)
     {
         //
     }
@@ -64,10 +64,10 @@ class ContainController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contain  $contain
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contain $contain)
+    public function update(Request $request, Type $type)
     {
         //
     }
@@ -75,10 +75,10 @@ class ContainController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contain  $contain
+     * @param  \App\Models\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contain $contain)
+    public function destroy(Type $type)
     {
         //
     }

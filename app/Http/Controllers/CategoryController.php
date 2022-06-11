@@ -1,16 +1,11 @@
 <?php
-declare(strict_types=1);
 
-namespace App\Http\Controllers\api;
+namespace App\Http\Controllers;
 
-use App\Models\Advservice;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
-/**
- * Class AdvserviceController
- * @package App\Http\Controllers
- */
-class AdvserviceController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +14,7 @@ class AdvserviceController extends Controller
      */
     public function index()
     {
-        return Advservice::all();
+        return Category::all();
     }
 
     /**
@@ -41,11 +36,11 @@ class AdvserviceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'service' => 'required|string'
+        'category' => 'required|string'
         ] , [
-            'service.required' => 'PLEASE ADD NAME FOR SERVICE TO ADD !!!!'
-        ]);
-        return  Advservice::create($request->all());
+        'category.required' => 'you have to enter category’s name to add!!!!'
+         ]);
+        return Category::create($request->all());
     }
 
     /**
@@ -54,18 +49,18 @@ class AdvserviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        return  Advservice::find($id);
+        return Category::find($id);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Advservice  $advservice
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Advservice $advservice)
+    public function edit(Category $category)
     {
         //
     }
@@ -74,29 +69,27 @@ class AdvserviceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,int $id)
+    public function update(Request $request, int $id)
     {
-        //dd($request->input('service'));
-        $ser = Advservice::where('id' , $id)->first();
-        $ser->update($request->all());
-            return response()->json([ 'status ' => 'true' , 'message' => 'SERVICE UPDATED !!!!'
-                , 'data' =>$ser]);
-
-
+        //dd($request->all());
+        $cate = Category::where( 'id' , $id)->first();
+        $cate->update($request->all());
+        return response()->json([ 'status ' => 'true' , 'message' => 'category updated !!!!'
+            , 'data' =>$cate]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(int $id)
     {
-        $adv = Advservice::destroy($id);
-        return response()->json([ 'status ' => 'true' , 'message' => 'SERVICE DELETED !!!!']);
+        $cat =  Category::destroy($id);
+        return response()->json([ 'status ' => 'true' , 'message' => ' category deleted !!!!']);
     }
 }
